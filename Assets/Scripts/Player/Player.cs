@@ -29,4 +29,21 @@ public class Player : MonoBehaviour
         Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
         tr.Translate(moveDir.normalized * Time.deltaTime * speed, Space.World);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch(other.tag)
+        {
+            case "Ghost":
+                Debug.LogFormat("GameOver");
+                this.speed = 0;
+                break;
+
+            case "Coin":
+                GameManager.gameManager.RaiseScore(1);
+                break;
+        }
+        
+        other.gameObject.SetActive(false);
+    }
 }

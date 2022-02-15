@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    public void RaiseScore(int number) { score += number; }
+
     IEnumerator<object> ActivePool(OBJ OBJtype)
     {
         while (!CheckClear())

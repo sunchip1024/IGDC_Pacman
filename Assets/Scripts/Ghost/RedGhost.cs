@@ -6,7 +6,7 @@ public class RedGhost : Ghost
 {
     private void Awake()
     {
-        base.speed = 4;
+        base.speed = Random.Range(2, 4);
     }
 
     // Start is called before the first frame update
