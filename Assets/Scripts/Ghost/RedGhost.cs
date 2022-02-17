@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class RedGhost : Ghost
 {
-    private void Awake()
-    {
-        base.speed = Random.Range(2, 4);
-    }
-
     // Start is called before the first frame update
-    void Start()
+    private new void Start()
     {
         base.Start();
+
+        // Random speed range : 2.0 ~ 4.0 (player speed : 5.0)
+        base.speed = Random.Range(2f, 4f);
+        
+        // Red Ghost must chase player
+        base.chaseDistance = Mathf.Infinity;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        base.Update(); 
+        base.Act();
+    }
+
+    protected override void Patrol()
+    {
+        // RedGhost do not patrol
+        return;
     }
 }

@@ -30,20 +30,16 @@ public class Player : MonoBehaviour
         tr.Translate(moveDir.normalized * Time.deltaTime * speed, Space.World);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        switch(other.tag)
-        {
-            case "Ghost":
-                Debug.LogFormat("GameOver");
-                this.speed = 0;
-                break;
+    public void getDamage() {
+        Debug.Log("Get Damage!");
+        speed = 0; 
+        GameManager.setGameOver(); 
+    }
 
-            case "Coin":
-                GameManager.gameManager.RaiseScore(1);
-                break;
-        }
-        
-        other.gameObject.SetActive(false);
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("WALL")) return;
+        if (collision.transform.CompareTag("Coin")) GameManager.RaiseScore(collision.transform.GetComponent<Coin>().getScore());
+        collision.gameObject.SetActive(false);
     }
 }

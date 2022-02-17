@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 19342358}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 19342356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 24}
+  m_LocalScale: {x: 1, y: 2, z: 24}
   m_Children: []
   m_Father: {fileID: 1963575757}
   m_RootOrder: 3
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 100299127}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 100299125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 11.5}
-  m_LocalScale: {x: 24, y: 1, z: 1}
+  m_LocalScale: {x: 24, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1963575757}
   m_RootOrder: 2
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 353394366}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 353394364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 24}
+  m_LocalScale: {x: 1, y: 2, z: 24}
   m_Children: []
   m_Father: {fileID: 1963575757}
   m_RootOrder: 4
@@ -640,8 +640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7162961de402b4ea76b279fbec51f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  goalCoin: 15
 --- !u!4 &1348614534
 Transform:
   m_ObjectHideFlags: 0
@@ -670,7 +668,7 @@ GameObject:
   - component: {fileID: 1494466906}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 1494466904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -11.5}
-  m_LocalScale: {x: 24, y: 1, z: 1}
+  m_LocalScale: {x: 24, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1963575757}
   m_RootOrder: 1
@@ -890,10 +888,25 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -294467182544965408, guid: a61056648a08f774785b862d35cb15a2,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 601698297843093185, guid: a61056648a08f774785b862d35cb15a2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 601698297843093185, guid: a61056648a08f774785b862d35cb15a2,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 6606261253481682516, guid: a61056648a08f774785b862d35cb15a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6606261253481682516, guid: a61056648a08f774785b862d35cb15a2,
         type: 3}
