@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.IsGameEnd()) return;
         move();
     }
 
@@ -33,13 +34,14 @@ public class Player : MonoBehaviour
     public void getDamage() {
         Debug.Log("Get Damage!");
         speed = 0; 
-        GameManager.setGameOver(); 
+        GameManager.SetGameOver(); 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("WALL")) return;
-        if (collision.transform.CompareTag("Coin")) GameManager.RaiseScore(collision.transform.GetComponent<Coin>().getScore());
+        if (collision.transform.CompareTag("Coin")) GameManager.RaiseScore(Coin.getScore());
+        if (collision.transform.CompareTag("Ghost")) getDamage();
         collision.gameObject.SetActive(false);
     }
 }

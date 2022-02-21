@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    protected int score = 1;
+    protected static int score = 1;
 
-    public int getScore() { return score; }
+    public static int getScore() { return score; }
 }

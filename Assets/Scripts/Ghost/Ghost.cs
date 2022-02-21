@@ -13,25 +13,38 @@ public abstract class Ghost : MonoBehaviour
     protected Transform playerTr;
     protected Transform ghostTr;
 
-    protected void Start()
+    protected Rigidbody ghostRigid;
+    protected CommandHandler handler;
+
+    private void Awake()
     {
         playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         ghostTr = GetComponent<Transform>();
+
+        ghostRigid = GetComponent<Rigidbody>();
+        handler = new CommandHandler(ghostRigid);
+    }
+
+    private void FixedUpdate()
+    {
+        Act();
     }
 
     protected void Act()
     {
+        if (GameManager.IsGameEnd()) return;
+
         float distance = (playerTr.position - ghostTr.position).magnitude;
 
-        if (distance <= attackDistance) Attack(playerTr.gameObject);
-        if (distance <= chaseDistance)  Chase(playerTr.position);
-        else                            Patrol();
+        if (distance <= attackDistance)     Attack(playerTr.gameObject);
+        else if (distance <= chaseDistance) Chase(playerTr.position);
+        else                                Patrol();
     }
 
-    /// <summary>
-    /// Patrol Coroutine을 실행시키기 위한 함수
-    /// </summary>
-    protected abstract void Patrol();
+    private void Patrol()
+    {
+        handler.Act();
+    }
 
     private void Chase(Vector3 target)
     {
@@ -42,5 +55,13 @@ public abstract class Ghost : MonoBehaviour
     private void Attack(GameObject target)
     {
         target.GetComponent<Player>().getDamage();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.transform.CompareTag("WALL")) return;
+        if (handler.GetNowCommand() != Command.COMMAND.FORWARD) return;
+        handler.Next();
+        Debug.LogFormat("[ {0} ] OnTriggerStay!", gameObject.name);
     }
 }

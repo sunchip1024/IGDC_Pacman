@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isGameOver;
+    private static bool isGameOver;
 
     [SerializeField]
     private static int score = 0;
@@ -22,8 +23,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CreatePool(OBJ.COIN, "Coin", 10, 1.0f);
-        CreatePool(OBJ.GHOST_RED, "Ghost_RED", 5, 2.0f);
-        CreatePool(OBJ.GHOST_BLUE, "Ghost_BLUE", 3, 3.0f);
+        CreatePool(OBJ.GHOST_RED, "Ghost_RED", 0, 2.0f);
+        CreatePool(OBJ.GHOST_BLUE, "Ghost_BLUE", 1, 3.0f);
 
         StartCoroutine(ActivePool(OBJ.COIN));
         StartCoroutine(ActivePool(OBJ.GHOST_RED));
@@ -60,19 +61,16 @@ public class GameManager : MonoBehaviour
         tr.position = new Vector3(Random.Range(-10, 10), 0.6f, Random.Range(-10, 10));
     }
 
-    private bool isClear()
-    {
-        if (score < goalCoin) return false;
-        return true;
-    }
-
     public static void RaiseScore(int number) { score += number; }
+    
+    private static bool isClear()   { return (score > goalCoin) ? true : false; }
+    public static void SetGameOver() { isGameOver = true;  }
+    private static bool IsGameOver() { return isGameOver; }
+    public static bool IsGameEnd() { return IsGameOver() || isClear(); }
 
-    public static void setGameOver() { isGameOver = true;  }
-
-    System.Collections.IEnumerator ActivePool(OBJ OBJtype)
+    IEnumerator ActivePool(OBJ OBJtype)
     {
-        while (!isClear() && !isGameOver)
+        while (!IsGameEnd())
         {
             yield return new WaitForSeconds(createTime[OBJtype]);
 

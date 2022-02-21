@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     private bool isStart = false;
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (time >= goal) return;
         if (!isStart) return;
@@ -26,6 +26,5 @@ public class Timer : MonoBehaviour
 
     public void stopTimer() { isStart = false; }
     public bool isTimerEnd() { return time >= goal; }
-
     public float getNowTime() { return time; }
 }
